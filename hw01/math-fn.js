@@ -52,6 +52,10 @@
  * 
  * @return {Number} факториал числа.
  */
+ function factorial (n) {
+if (n == 0 || n == 1) return 1;
+else return (n * factorial (n - 1));
+}
 
 /**
  * Задание 2. Создать функцию nfib для подсчета n-го числа Фибоначчи
@@ -67,3 +71,14 @@
  *
  * @return {Number} Число Фибоначчи.
  */
+ function nfib(n) {
+if(n == 1){
+	return 0;
+	}else{
+    if(n==2||n==3){
+        return 1;
+    }else{
+	return nfib(n-1) + nfib(n-2);
+	}
+	}
+}
