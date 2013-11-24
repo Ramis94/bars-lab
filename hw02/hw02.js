@@ -20,6 +20,8 @@ function Warrior(name, level){
   // Ваш код здесь...
   this.name = name;
   this.level = level;
+  this.getCode = function(){
+	}
 }
 
 /**
@@ -36,7 +38,7 @@ function Warrior(name, level){
  * @return {Number} Урон, наносимой атакой.
  */
 Warrior.prototype.attack = function() {
-  // Ваш код здесь...
+  return this.level * 0.1;
 };
 
 /**
@@ -47,23 +49,60 @@ Warrior.prototype.attack = function() {
  * Кодекс джедая: "Нет волнения — есть покой...".
  * Кодекс ситха: "Спокойствие — ложь, есть только страсть..."
  */
-
 /**
  * Создает экземпляр джедая
  * @param {String} name Имя джедая.
  * @param {Number} level Уровень джедая.
  */
-function Jedi (name, level) {
-  // Ваш код здесь...
+Jedi.prototype = new Warrior();
+ function Jedi (name, level) {
+	this.name = name;
+	this.level = level;
+	this.sideOfForce = "light";
+	this.getCode = function(){
+		return "Нет волнения — есть покой...";
+	}
+	this.toLightSide = function(sith){
+		if(sith instanceof Sith){
+		if(sith.level < this.level){
+		sith.sideOfForce = "light";
+		}
+		else{
+		sith.toDarkSide(this);
+		}}
+		else{
+		throw Error("Invalid argument");
+		}
+	}
 }
+
 
 /**
  * Создает экземпляр ситха
  * @param {String} name Имя ситха.
  * @param {Number} level Уровень ситха.
  */
-// Ваш код здесь...
-
+ Sith.prototype = new Warrior();
+function Sith (name, level){
+	this.name = name;
+	this.level = level;
+	this.sideOfForce = "dark";
+	this.getCode = function(){
+		return "Спокойствие — ложь, есть только страсть...";
+	}
+	this.toDarkSide = function(jedi){
+	if(jedi instanceof Jedi){
+	if(jedi.level < this.level){
+	jedi.sideOfForce = "dark";
+	}
+	else{
+	jedi.toLightSide (this);
+	}
+	}
+	else{
+	throw Error ("Invalid argument");
+	}}
+}
 
 /**
  * Метод произнесения кодекса.
