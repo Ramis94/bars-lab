@@ -1,0 +1,40 @@
+<html>
+<body>
+
+<div id = 'Excel'>
+</div>
+
+<input onclick="CreateTable()" type=button value="CreateTable" />
+<input onclick="addRow()" type=button value="addRow" />
+<input onclick="addCol()" type=button value="addCol" />
+
+<script type="text/javascript">
+
+count = 1;
+
+function CreateTable(){
+var table = document.getElementById('Excel');
+table.innerHTML = table.innerHTML + '<table id ="table" bordercolor="#ffff00" border ="2" width=100% frame="border"></table>';
+}
+
+function addRow(){
+var c = new String("<tr>");
+var table = document.getElementById('table');
+for (var i = 0; i < count; i++) {
+	c += '<td><input type="text" width=100%> </td>';
+}
+c+= '</tr>';
+table.innerHTML += c;
+}
+
+function addCol(){
+var table = document.getElementsByTagName('TR');
+for( var i=0; i<table.length; i++){
+table[i].innerHTML += '<td><input type ="text" width = 100%></td>';
+}
+count++;
+}
+
+</script>
+</body>
+</html>
